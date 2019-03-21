@@ -31,7 +31,7 @@ TBD: json file with lon lat of all 50 capitals
 ## Python Libraries
 TBD: Talk about the libraries that I used in python, what was there purpose
 
-## Openlayers Visualizations
+## OpenLayers
 TBD: Stamen terrain basemap
 
 ## Flask App
