@@ -1,4 +1,3 @@
-
 from geopy import distance
 
 newport_ri = (41.49008, -71.312796)
