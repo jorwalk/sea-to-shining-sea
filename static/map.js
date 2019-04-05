@@ -9,7 +9,7 @@ var map = new ol.Map({
   target: 'map',
   view: new ol.View({
     center: ol.proj.fromLonLat([-98.5795, 39.828175]),
-    zoom: 4
+    zoom: 3
   })
 });
 
@@ -20,11 +20,10 @@ var style = new ol.style.Style({
   })
 });
 
-var flightsSource = new ol.source.Vector({
-  wrapX: false,
-  loader: function() {
-    var url = 'flight-data';
-    fetch(url).then(function(response) {
+
+function flights_loader() {
+  var url = '/';
+    fetch(url,{method: "POST"}).then(function(response) {
       return response.json();
     }).then(function(json) {
       var flightsData = json.flights;
@@ -60,9 +59,12 @@ var flightsSource = new ol.source.Vector({
       }
       map.on('postcompose', animateFlights);
     });
-  }
-});
+}
 
+var flightsSource = new ol.source.Vector({
+  wrapX: false,
+  loader: flights_loader
+});
 
 var flightsLayer = new ol.layer.Vector({
   source: flightsSource,
@@ -79,7 +81,7 @@ var flightsLayer = new ol.layer.Vector({
 
 map.addLayer(flightsLayer);
 
-var pointsPerMs = 0.1;
+var pointsPerMs = 0.5;
 
 function animateFlights(event) {
   var vectorContext = event.vectorContext;
@@ -116,3 +118,10 @@ function addLater(feature, timeout) {
     flightsSource.addFeature(feature);
   }, timeout);
 }
+
+map.on('singleclick', function (evt) {
+    console.log(evt.coordinate);
+
+    // convert coordinate to EPSG-4326
+    console.log(ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326'));
+});
