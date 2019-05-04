@@ -20,6 +20,7 @@ def root():
     if request.method == 'POST':
         data = Data()
         flight = {"flights": data.flight_path(route)}
+        print(flight)
         return json.dumps(flight)
 
     if request.method == 'GET':
