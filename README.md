@@ -1,10 +1,10 @@
 # From Sea To Shining Sea
 
-Given a list of 50 capitals in the United States of America, 
-and the distance of every capital from each other, what is the 
-shortest possible route that visits each  and returns to the origin city?
+Given a list of the top 1000 cities in the United States of America, 
+and the distance from each other, what is the 
+shortest possible route that visits each and returns to the origin city?
 
-The travelling saleman problem - from sea to shining sea.
+The traveling saleman problem - from sea to shining sea.
 
 ## How did this project came about?
 - What is my inspiration for this article?
